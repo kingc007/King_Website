@@ -29,8 +29,13 @@ trashable/      # superseded originals, kept locally only (gitignored)
 ```
 
 Every image the site loads is WebP, with one deliberate exception:
-`assets/socials.jpg` is the Open Graph / Twitter card image, and social
-crawlers still want JPEG or PNG there.
+`assets/og-card.jpg` is the Open Graph / Twitter card image, and social
+crawlers still want JPEG or PNG there. It is 1200×630 (the size LinkedIn and
+Facebook expect) and is referenced by **absolute** URL in `index.html` — those
+crawlers do not resolve relative `og:image` paths. If the card is ever
+redesigned, give the file a new name rather than overwriting it: LinkedIn caches
+scraped images by URL for about a week, so a fresh filename is the only reliable
+way to make the new card show up.
 
 ## Deploy (static hosting)
 
