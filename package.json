@@ -1,0 +1,24 @@
+{
+  "name": "personalweb-2.0",
+  "version": "1.0.0",
+  "description": "A Persona 5–themed personal website: an interactive, animated pause-menu (Persona, Favorites, Education, Socials, Guests) built with **vanilla HTML, CSS, and JavaScript** — no framework, no build step.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingc007/personalweb_2.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kingc007/personalweb_2.0/issues"
+  },
+  "homepage": "https://github.com/kingc007/personalweb_2.0#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
