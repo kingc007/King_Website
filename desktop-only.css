@@ -1,0 +1,143 @@
+/* The site is desktop-only. On phones and tablets every desktop surface is
+   suppressed and the gate below is the entire page. Keyed off the is-compact /
+   is-desktop class the head script stamps on <html>, so style.css is untouched. */
+
+html.is-desktop .dt-gate {
+  display: none !important;
+}
+
+html.is-compact {
+  --dt-red: #e0233a;
+  --dt-ink: #0b0b0d;
+  --dt-paper: #f0ede4;
+}
+
+html.is-compact,
+html.is-compact body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--dt-ink);
+  height: 100%;
+}
+
+html.is-compact .bg-video,
+html.is-compact .bg-shade,
+html.is-compact .svg-defs,
+html.is-compact .take-heart,
+html.is-compact .stage,
+html.is-compact .panel-wrap,
+html.is-compact .start-gate,
+html.is-compact .transition-out,
+html.is-compact .explosion-fx,
+html.is-compact .fade-black {
+  display: none !important;
+}
+
+.dt-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1.1rem;
+  padding-top: calc(1.1rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px));
+  background:
+    repeating-linear-gradient(115deg,
+      rgba(224, 35, 58, 0.07) 0 2px,
+      transparent 2px 9px),
+    radial-gradient(circle at 70% 12%, #2a0206 0%, var(--dt-ink) 62%);
+  font-family: 'Oswald', 'Segoe UI', sans-serif;
+  overflow-y: auto;
+}
+
+.dt-gate-card {
+  position: relative;
+  width: min(100%, 27rem);
+  background: var(--dt-ink);
+  border: 3px solid var(--dt-paper);
+  padding: 1.6rem 1.3rem 1.4rem;
+  box-shadow: 8px 9px 0 var(--dt-red);
+  text-align: center;
+  animation: dt-slam 0.44s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
+}
+
+@keyframes dt-slam {
+  0% { opacity: 0; transform: scale(1.22) rotate(-3deg); }
+  60% { opacity: 1; transform: scale(0.97) rotate(0.8deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.dt-gate-tape {
+  position: absolute;
+  top: -1.05rem;
+  left: -0.6rem;
+  right: -0.6rem;
+  height: 1.5rem;
+  background: repeating-linear-gradient(115deg,
+      var(--dt-red) 0 12px,
+      var(--dt-ink) 12px 24px);
+  border-block: 2px solid var(--dt-paper);
+}
+
+.dt-gate-art {
+  width: min(52%, 11rem);
+  height: auto;
+  display: block;
+  margin: 0.9rem auto 1rem;
+  filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.55));
+  animation: dt-float 4.6s ease-in-out infinite;
+}
+
+@keyframes dt-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(-1.6deg); }
+}
+
+.dt-gate-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 11vw, 2.9rem);
+  line-height: 0.96;
+  text-transform: uppercase;
+  margin: 0 0 0.9rem;
+  color: var(--dt-paper);
+  transform: skewX(-8deg);
+  text-shadow: 3px 3px 0 var(--dt-red);
+}
+
+.dt-gate-card p {
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: rgba(240, 237, 228, 0.8);
+  margin: 0 0 1rem;
+}
+
+.dt-gate-cta {
+  display: inline-block;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--dt-paper);
+  padding: 0.55rem 1.1rem;
+  transform: skewX(-10deg);
+  margin: 0.2rem 0 1.1rem !important;
+  color: var(--dt-ink) !important;
+}
+
+.dt-gate-sign {
+  display: block;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dt-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt-gate-card,
+  .dt-gate-art {
+    animation: none !important;
+  }
+}

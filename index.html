@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>thekingbaby</title>
+
+  <script>
+    (function () {
+      var DESKTOP_MQ = '(min-width: 1367px), (min-width: 1025px) and (pointer: fine)';
+      var root = document.documentElement;
+      root.dataset.desktopMq = DESKTOP_MQ;
+      root.classList.add(window.matchMedia(DESKTOP_MQ).matches ? 'is-desktop' : 'is-compact');
+    })();
+  </script>
+  <meta name="description"
+    content="The personal portfolio of Kingsley Chow, styled after the Persona 5 UI — interests, education, and socials.">
+  <meta name="author" content="Kingsley Chow">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="./assets/takeheart.webp" type="image/webp">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="thekingbaby">
+  <meta property="og:description"
+    content="The personal portfolio of Kingsley Chow, styled after the Persona 5 UI — interests, education, and socials.">
+  <meta property="og:image" content="./assets/socials.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kingsley Chow — Persona">
+  <meta name="twitter:description"
+    content="The personal portfolio of Kingsley Chow, styled after the Persona 5 UI — interests, education, and socials.">
+  <meta name="twitter:image" content="./assets/socials.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Black+Han+Sans&family=Bungee&family=Oswald:wght@400;500;600;700&family=Passion+One:wght@700;900&family=Rozha+One&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./desktop-only.css">
+</head>
+
+<body>
+
+  <video class="bg-video" autoplay muted playsinline poster="">
+    <source src="./assets/loopedbasemenu.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+  </video>
+  <div class="bg-shade"></div>
+
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true">
+    <defs>
+
+      <filter id="ink-paint" x="-40%" y="-40%" width="180%" height="180%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.55 0.4" numOctaves="2" seed="7" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="14"
+          xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+
+      <filter id="chromakey" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+
+        <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                                             0 1 0 0 0
+                                             0 0 1 0 0
+                                             8 -8 2 0 1" result="keyed" />
+
+        <feComposite in="keyed" in2="SourceGraphic" operator="in" />
+      </filter>
+    </defs>
+  </svg>
+
+  <button class="take-heart" id="take-heart" type="button" aria-label="Arsène speaks">
+    <img src="./assets/takeheart.webp" alt="Take Your Heart">
+  </button>
+
+  <div class="stage">
+
+    <nav class="menu" id="menu">
+      <a class="menu-item is-active" href="#" data-target="persona">
+        <span class="menu-label">Persona</span>
+      </a>
+      <a class="menu-item" href="#" data-target="skills">
+        <span class="menu-label">Interests</span>
+      </a>
+      <a class="menu-item" href="#" data-target="education">
+        <span class="menu-label">Education</span>
+      </a>
+      <a class="menu-item" href="#" data-target="experience">
+        <span class="menu-label">Socials</span>
+      </a>
+      <a class="menu-item" href="https://docs.google.com/document/d/1QTTqnjy3OOiTT4bGY6Wxojza-a-w0tmrkR1uitRvMqY/edit?tab=t.0"
+        target="_blank" rel="noopener">
+        <span class="menu-label">Resume</span>
+      </a>
+    </nav>
+
+    <svg class="menu-doodle" style="left:5%;top:8%;width:2.9%;--rot:-12deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:18%;top:6%;width:2.5%;--rot:7deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+    <svg class="menu-doodle" style="left:30%;top:11%;width:2.8%;--rot:14deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:9%;top:22%;width:2.4%;--rot:10deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+    <svg class="menu-doodle" style="left:23%;top:25%;width:2.8%;--rot:-9deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.9" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:4%;top:38%;width:2.7%;--rot:-14deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:15%;top:44%;width:2.8%;--rot:-6deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:6%;top:58%;width:2.5%;--rot:9deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+    <svg class="menu-doodle" style="left:26%;top:62%;width:2.7%;--rot:-10deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#0d0d0d" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:12%;top:72%;width:2.6%;--rot:5deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:4%;top:82%;width:2.9%;--rot:-16deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.9" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:22%;top:80%;width:2.4%;--rot:4deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+    <svg class="menu-doodle" style="left:13%;top:92%;width:2.7%;--rot:-8deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+    <svg class="menu-doodle" style="left:30%;top:90%;width:2.6%;--rot:5deg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+  </div>
+
+  <div class="fade-black" id="fade-black"></div>
+
+  <video class="transition-out" id="transition-out" playsinline preload="auto"
+    poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAen63NgAAAAASUVORK5CYII="></video>
+
+  <div class="panel-wrap" id="panel-wrap" hidden>
+    <button class="panel-close" id="panel-close" aria-label="Back (Escape)">
+      <span class="key">ESC</span>
+      <span class="key-label">Back</span>
+    </button>
+
+    <section class="panel panel--media" data-panel="persona">
+      <video class="section-video" muted playsinline preload="auto">
+        <source src="./assets/personaloopedmenu.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+      </video>
+
+      <div class="persona-text" aria-hidden="true">
+        <video class="persona-text-vid pt-base" muted playsinline preload="auto">
+          <source src="./assets/personatext.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+        </video>
+        <video class="persona-text-vid pt-num" muted playsinline preload="auto">
+          <source src="./assets/personatext.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+        </video>
+      </div>
+
+      <img class="persona-photo persona-photo--bottom" src="./assets/photos_bottom.webp" alt="" aria-hidden="true">
+      <img class="persona-photo persona-photo--top" src="./assets/photos_top.webp" alt="" aria-hidden="true">
+    </section>
+
+    <section class="panel panel--media" data-panel="experience">
+      <video class="section-video" muted playsinline preload="auto">
+        <source src="./assets/personaloopedmenu1.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+      </video>
+
+      <img class="socials-card" src="./assets/socials.webp" alt="" aria-hidden="true">
+    </section>
+
+    <section class="panel panel--media" data-panel="skills">
+      <video class="section-video" muted playsinline preload="auto">
+        <source src="./assets/personaloopedmenu3.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+      </video>
+
+      <nav class="sub-menu" id="interests-menu" aria-label="Interests">
+        <a class="menu-item is-active" href="#" data-sub="music"><span class="menu-label">Music</span></a>
+        <a class="menu-item" href="#" data-sub="hobbies"><span class="menu-label">Hobbies</span></a>
+        <a class="menu-item" href="#" data-sub="people"><span class="menu-label">People</span></a>
+
+        <a class="menu-item" href="#" data-sub="movies"><span class="menu-label">Watch</span></a>
+        <a class="menu-item" href="#" data-sub="places"><span class="menu-label">Places</span></a>
+      </nav>
+
+      <div class="web-board hobbies-board" data-web="hobbies" hidden aria-hidden="true">
+        <div class="hobbies-fan" id="hobbies-fan" style="--n:3"></div>
+        <div class="hobbies-deck" id="hobbies-deck" role="button" tabindex="-1" aria-label="Draw a card from the deck"></div>
+        <svg class="web-doodle" style="left:41%;top:23%;width:2.6%;--rot:14deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+        <svg class="web-doodle" style="left:38%;top:52%;width:2.3%;--rot:-9deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+        <svg class="web-doodle" style="left:5.5%;top:44%;width:2.9%;--rot:8deg" viewBox="0 0 24 24"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+        <svg class="web-doodle" style="left:46%;top:70%;width:2.6%;--rot:-13deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#0d0d0d" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="web-board web-board--confidants" data-web="people" hidden aria-hidden="true">
+      <div class="confidant-spread" id="confidant-spread"></div>
+      <svg class="web-doodle" style="left:6.0%;top:15.0%;width:2.6%;--rot:14deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:57.0%;top:20.0%;width:2.9%;--rot:-8deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+      <svg class="web-doodle" style="left:56.0%;top:82.0%;width:2.5%;--rot:14deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#0d0d0d" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:4.0%;top:88.0%;width:2.7%;--rot:-5deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+      </div>
+
+      <div class="web-board web-board--metro" data-web="places" hidden aria-hidden="true">
+
+      <div class="metro-map">
+        <div class="metro-scroll">
+          <div class="metro-canvas">
+            <svg class="metro-rails" viewBox="0 0 1650 500" aria-hidden="true"></svg>
+            <div class="metro-stations" id="metro-stations"></div>
+          </div>
+        </div>
+
+        <div class="metro-badge" id="metro-badge"></div>
+
+        <div class="metro-more" aria-hidden="true">
+          <span class="metro-more-rail"></span>
+          <span class="metro-more-chev">››</span>
+        </div>
+
+        <div class="metro-prog" id="metro-prog">
+          <span class="metro-prog-cap">West</span>
+          <span class="metro-prog-track">
+            <span class="metro-prog-done"></span>
+            <span class="metro-prog-dot"></span>
+          </span>
+          <span class="metro-prog-cap">East</span>
+        </div>
+        <div class="metro-hint" aria-hidden="true"><span class="metro-hint-label">Scroll the line</span><span class="metro-hint-arrow">››</span></div>
+      </div>
+      <svg class="web-doodle" style="left:49.5%;top:4.0%;width:2.3%;--rot:9deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:58.0%;top:72.0%;width:2.7%;--rot:24deg" viewBox="0 0 24 24"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:76.0%;top:80.0%;width:2.4%;--rot:-21deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="web-board" data-web="music" hidden aria-hidden="true">
+      <svg class="web-strings web-strings--spider" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+
+      <img class="web-pc web-center" style="left:34.00%;top:50.00%;width:13.50%;--rot:0deg" src="./assets/musicmid.webp" alt="" aria-hidden="true">
+
+      <img class="web-pc web-pc--keyed" data-photo="1" style="left:19.00%;top:68.00%;width:30.00%;--rot:-3.4deg" src="./assets/music/1.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="11" data-hub="1" style="left:5.50%;top:52.00%;width:22.00%;--rot:5.6deg" src="./assets/music/11.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="12" data-hub="1" style="left:5.00%;top:78.00%;width:22.00%;--rot:-6.2deg" src="./assets/music/12.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="13" data-hub="1" style="left:13.50%;top:89.00%;width:22.00%;--rot:4.1deg" src="./assets/music/13.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="14" data-hub="1" style="left:26.50%;top:88.00%;width:22.00%;--rot:-4.8deg" src="./assets/music/14.webp" alt="" aria-hidden="true">
+
+      <img class="web-pc web-pc--keyed" data-photo="2" style="left:47.00%;top:68.00%;width:30.00%;--rot:2.8deg" src="./assets/music/2.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="9" data-hub="2" style="left:41.00%;top:89.00%;width:22.00%;--rot:5.2deg" src="./assets/music/9.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="10" data-hub="2" style="left:57.50%;top:85.00%;width:22.00%;--rot:-5.4deg" src="./assets/music/10.webp" alt="" aria-hidden="true">
+
+      <img class="web-pc web-pc--keyed" data-photo="3" style="left:48.00%;top:28.00%;width:30.00%;--rot:-2.6deg" src="./assets/music/3.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="7" data-hub="3" style="left:38.00%;top:10.50%;width:22.00%;--rot:3.9deg" src="./assets/music/7.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="8" data-hub="3" style="left:57.00%;top:16.00%;width:22.00%;--rot:6.1deg" src="./assets/music/8.webp" alt="" aria-hidden="true">
+
+      <img class="web-pc web-pc--keyed" data-photo="4" style="left:18.00%;top:28.00%;width:30.00%;--rot:4.3deg" src="./assets/music/4.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="5" data-hub="4" style="left:6.00%;top:13.00%;width:22.00%;--rot:-5.7deg" src="./assets/music/5.webp" alt="" aria-hidden="true">
+      <img class="web-pc web-pc--keyed" data-photo="6" data-hub="4" style="left:28.50%;top:11.00%;width:22.00%;--rot:2.4deg" src="./assets/music/6.webp" alt="" aria-hidden="true">
+
+      <svg class="web-doodle" style="left:32.50%;top:19.00%;width:2.60%;--rot:14deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:11.20%;top:24.60%;width:2.30%;--rot:-9deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+      <svg class="web-doodle" style="left:4.90%;top:36.40%;width:2.70%;--rot:18deg" viewBox="0 0 24 24"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:33.80%;top:40.20%;width:2.40%;--rot:-15deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+      <svg class="web-doodle" style="left:14.60%;top:52.00%;width:2.90%;--rot:8deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:48.80%;top:50.60%;width:2.50%;--rot:-11deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#0d0d0d" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:64.00%;top:71.00%;width:2.60%;--rot:16deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+      <svg class="web-doodle" style="left:33.20%;top:62.60%;width:2.80%;--rot:-7deg" viewBox="0 0 24 24"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+      <svg class="web-doodle" style="left:11.00%;top:67.00%;width:2.40%;--rot:12deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+      <svg class="web-doodle" style="left:33.60%;top:80.80%;width:2.70%;--rot:-13deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="web-board web-board--movies" data-web="movies" hidden>
+      <div class="movie-stage">
+
+        <svg class="reel-drift" aria-hidden="true" preserveAspectRatio="none"></svg>
+
+        <svg class="reel-tail" aria-hidden="true" preserveAspectRatio="none"></svg>
+
+        <div class="reel-gate" aria-hidden="true"></div>
+
+        <div class="movie-reel">
+          <div class="reel-scroll">
+            <div class="reel-film">
+
+              <div class="reel-leader" aria-hidden="true"></div>
+              <button class="reel-frame is-current" type="button" style="--o:0"
+                      data-title="Violet Evergarden" aria-label="Project review 1, Violet Evergarden">
+                <span class="reel-shot"><img src="./assets/movies/still_1.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">01</span>
+                  <span class="reel-title">Violet Evergarden</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:1"
+                      data-title="Frieren" aria-label="Project frame 2, Frieren">
+                <span class="reel-shot"><img src="./assets/movies/frieren.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">02</span>
+                  <span class="reel-title">Frieren</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:2"
+                      data-title="Veil" aria-label="Project frame 3, Veil">
+                <span class="reel-shot"><img src="./assets/movies/veil.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">03</span>
+                  <span class="reel-title">Veil</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:3"
+                      data-title="Les Misérables" aria-label="Project review 4, Les Misérables">
+                <span class="reel-shot"><img src="./assets/movies/still_2.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">04</span>
+                  <span class="reel-title">Les Misérables</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:4"
+                      data-title="Tokyo Ghoul" aria-label="Project frame 5, Tokyo Ghoul">
+                <span class="reel-shot"><img src="./assets/movies/tokyoghoul.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">05</span>
+                  <span class="reel-title">Tokyo Ghoul</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:5"
+                      data-title="Parasite" aria-label="Project review 6, Parasite">
+                <span class="reel-shot"><img src="./assets/movies/still_3.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">06</span>
+                  <span class="reel-title">Parasite</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:6"
+                      data-title="La La Land" aria-label="Project review 7, La La Land">
+                <span class="reel-shot"><img src="./assets/movies/still_4.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">07</span>
+                  <span class="reel-title">La La Land</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:7"
+                      data-title="The Dark Knight" aria-label="Project review 8, The Dark Knight">
+                <span class="reel-shot"><img src="./assets/movies/still_5.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">08</span>
+                  <span class="reel-title">The Dark Knight</span>
+                </span>
+              </button>
+
+              <button class="reel-frame" type="button" style="--o:8"
+                      data-title="Spider-Man: Across the Spider-Verse"
+                      aria-label="Project frame 9, Spider-Man: Across the Spider-Verse">
+                <span class="reel-shot"><img src="./assets/movies/spiderverse.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">09</span>
+                  <span class="reel-title" title="Spider-Man: Across the Spider-Verse">Across the Spider-Verse</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:9"
+                      data-title="Suzume" aria-label="Project frame 10, Suzume">
+                <span class="reel-shot"><img src="./assets/movies/suzume.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">10</span>
+                  <span class="reel-title">Suzume</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:10"
+                      data-title="The Tunnel to Summer, the Exit of Goodbyes"
+                      aria-label="Project frame 11, The Tunnel to Summer, the Exit of Goodbyes">
+                <span class="reel-shot"><img src="./assets/movies/tunnel.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">11</span>
+                  <span class="reel-title" title="The Tunnel to Summer, the Exit of Goodbyes">The Tunnel to Summer</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:11"
+                      data-title="Attack on Titan" aria-label="Project frame 12, Attack on Titan">
+                <span class="reel-shot"><img src="./assets/movies/aot.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">12</span>
+                  <span class="reel-title">Attack on Titan</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:12"
+                      data-title="Despicable Me" aria-label="Project frame 13, Despicable Me">
+                <span class="reel-shot"><img src="./assets/movies/despicableme.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">13</span>
+                  <span class="reel-title">Despicable Me</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:13"
+                      data-title="Home Alone" aria-label="Project frame 14, Home Alone">
+                <span class="reel-shot"><img src="./assets/movies/homealone.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">14</span>
+                  <span class="reel-title">Home Alone</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:14"
+                      data-title="John Wick" aria-label="Project frame 15, John Wick">
+                <span class="reel-shot"><img src="./assets/movies/johnwick.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">15</span>
+                  <span class="reel-title">John Wick</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:15"
+                      data-title="Murder on the Orient Express"
+                      aria-label="Project frame 16, Murder on the Orient Express">
+                <span class="reel-shot"><img src="./assets/movies/orientexpress.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">16</span>
+                  <span class="reel-title" title="Murder on the Orient Express">Orient Express</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:16"
+                      data-title="The Bourne Identity" aria-label="Project frame 17, The Bourne Identity">
+                <span class="reel-shot"><img src="./assets/movies/bourne.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">17</span>
+                  <span class="reel-title">The Bourne Identity</span>
+                </span>
+              </button>
+              <button class="reel-frame" type="button" style="--o:17"
+                      data-title="Wuthering Heights" aria-label="Project frame 18, Wuthering Heights">
+                <span class="reel-shot"><img src="./assets/movies/wuthering.webp" alt="" draggable="false"></span>
+                <span class="reel-caption">
+                  <span class="reel-rank">18</span>
+                  <span class="reel-title">Wuthering Heights</span>
+                </span>
+              </button>
+              <div class="reel-leader reel-leader--tail" aria-hidden="true"><span>TAIL · END OF REEL</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reel-hint" aria-hidden="true"><span class="reel-hint-label">Scroll the reel</span><span class="reel-hint-arrow">››</span></div>
+
+        <div class="movie-projector" hidden>
+          <div class="movie-scrim"></div>
+          <div class="movie-frame">
+            <img class="movie-card is-current" style="--dx:4.3%" src="./assets/movies/1.webp" alt="" aria-hidden="true">
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/frieren.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">02</span><span class="strip-title">Frieren</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/veil.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">03</span><span class="strip-title">Veil</span></figcaption>
+            </figure>
+            <img class="movie-card" style="--dx:6.6%" src="./assets/movies/2.webp" alt="" aria-hidden="true">
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/tokyoghoul.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">05</span><span class="strip-title">Tokyo Ghoul</span></figcaption>
+            </figure>
+            <img class="movie-card" style="--dx:-5%" src="./assets/movies/3.webp" alt="" aria-hidden="true">
+            <img class="movie-card" style="--dx:-3.7%" src="./assets/movies/4.webp" alt="" aria-hidden="true">
+            <img class="movie-card" style="--dx:-3%" src="./assets/movies/5.webp" alt="" aria-hidden="true">
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/spiderverse.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">09</span><span class="strip-title">Spider-Man: Across the Spider-Verse</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/suzume.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">10</span><span class="strip-title">Suzume</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/tunnel.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">11</span><span class="strip-title">The Tunnel to Summer, the Exit of Goodbyes</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/aot.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">12</span><span class="strip-title">Attack on Titan</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/despicableme.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">13</span><span class="strip-title">Despicable Me</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/homealone.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">14</span><span class="strip-title">Home Alone</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/johnwick.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">15</span><span class="strip-title">John Wick</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/orientexpress.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">16</span><span class="strip-title">Murder on the Orient Express</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/bourne.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">17</span><span class="strip-title">The Bourne Identity</span></figcaption>
+            </figure>
+            <figure class="movie-card movie-card--strip">
+              <span class="strip-shot"><img src="./assets/movies/wuthering.webp" alt="" draggable="false"></span>
+              <figcaption class="strip-caption"><span class="strip-rank">18</span><span class="strip-title">Wuthering Heights</span></figcaption>
+            </figure>
+          </div>
+          <button class="movie-close" type="button" aria-label="Close review">
+            <span class="bumper-key">ESC</span>
+            <span class="movie-close-label">Back to the reel</span>
+          </button>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="panel panel--media" data-panel="education">
+      <video class="section-video" muted playsinline preload="auto">
+        <source src="./assets/personaloopedmenu2.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+      </video>
+
+      <div class="edu-stack">
+        <video class="edu-clip" playsinline preload="auto">
+          <source src="./assets/edu1.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+        </video>
+        <video class="edu-clip" playsinline preload="auto">
+          <source src="./assets/edu2.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+        </video>
+      </div>
+    </section>
+  </div>
+
+  <video class="explosion-fx" id="explosion-fx" playsinline preload="auto">
+    <source src="./assets/explosion.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+  </video>
+
+  <div class="start-gate" id="start-gate">
+
+    <video class="start-gate-video" id="start-gate-video" muted playsinline preload="auto" autoplay loop>
+      <source src="./assets/startbuttonloop.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+    </video>
+    <img class="start-gate-art" src="./assets/startmenu_cut.webp" alt="" aria-hidden="true">
+    <div class="start-gate-text"><span class="menu-label">Press Any</span><span class="menu-label">Button</span></div>
+    <video class="start-gate-sting" id="start-gate-sting" muted playsinline preload="auto">
+      <source src="./assets/startbuttongreenscreen.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
+    </video>
+  </div>
+
+  <div class="dt-gate" role="alertdialog" aria-labelledby="dt-gate-title">
+    <div class="dt-gate-card">
+      <span class="dt-gate-tape" aria-hidden="true"></span>
+      <img class="dt-gate-art" src="./assets/takeheart.webp" alt="" aria-hidden="true">
+      <h1 class="dt-gate-title" id="dt-gate-title">Desktop only</h1>
+      <p>This site is a Persona-styled production — animated menus, a spider-web music board,
+        a scrolling film reel and a live metro map. None of it fits on a small screen.</p>
+      <p class="dt-gate-cta">Come back on a desktop.</p>
+      <span class="dt-gate-sign">thekingbaby</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      if (!root.classList.contains('is-compact')) {
+        var s = document.createElement('script');
+        s.src = './script.js';
+        document.body.appendChild(s);
+      }
+      window.matchMedia(root.dataset.desktopMq)
+        .addEventListener('change', function () { window.location.reload(); });
+    })();
+  </script>
+</body>
+</html>
