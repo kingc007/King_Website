@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Cache
+.cache/
+.vercel/
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local dev
+trashable/
