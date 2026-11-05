@@ -1,0 +1,337 @@
+/* Interaction motion layer — driven by motion.js. Everything here composes with
+   style.css through the individual `translate` / `rotate` / `scale` properties
+   (or new custom properties), so none of the existing `transform` animations
+   are overridden. */
+
+/* ---------- Menu: ransom letters slam in one by one ---------- */
+
+.menu.revealed .menu-label .ch {
+  animation: fx-letter-drop 0.36s var(--ease-snap) backwards;
+  animation-delay: calc(80ms + var(--ri, 0) * 55ms + var(--ci, 0) * 17ms);
+}
+
+@keyframes fx-letter-drop {
+  0%   { opacity: 0; translate: 0 -0.7em; rotate: calc(var(--cs, 1) * 32deg); scale: 1.9; }
+  55%  { opacity: 1; scale: 0.88; }
+  100% { opacity: 1; translate: 0 0; rotate: 0deg; scale: 1; }
+}
+
+/* ---------- Pointer parallax ---------- */
+
+/* motion.js writes each doodle's translate and rotate, and the menu's translate,
+   straight onto the element as the pointer moves. */
+
+/* ---------- ESC button: skid in, flinch when the key is pressed ---------- */
+
+.panel-wrap:not([hidden]) .panel-close {
+  animation: fx-esc-in 0.5s var(--ease-snap) 0.25s backwards;
+}
+
+@keyframes fx-esc-in {
+  0%   { opacity: 0; translate: 160% 0; }
+  70%  { opacity: 1; translate: -8% 0; }
+  100% { opacity: 1; translate: 0 0; }
+}
+
+.panel-close .key { transition: background-color 0.12s, color 0.12s, box-shadow 0.12s; }
+
+/* ---------- Card tilt + glare ---------- */
+
+.confidant-card .cf-frame {
+  transform: perspective(700px) rotateX(var(--fx-rx, 0deg)) rotateY(var(--fx-ry, 0deg));
+  transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.25);
+}
+
+.confidant-card.fx-tilting .cf-frame {
+  transition-duration: 0.12s;
+  transition-timing-function: ease-out;
+}
+
+.fx-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--fx-gx, 50%) var(--fx-gy, 50%),
+      rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 55%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.confidant-card.fx-tilting .fx-glare { opacity: 1; }
+
+/* ---------- Idle life: things settle, then keep breathing ---------- */
+
+@keyframes fx-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 var(--fx-float-y, -6px); }
+}
+
+@keyframes fx-sway {
+  0%, 100% { rotate: calc(var(--fx-sway, 1.6deg) * -1); }
+  50%      { rotate: var(--fx-sway, 1.6deg); }
+}
+
+/* Socials: slam in, then drift like it's pinned to a draft. */
+.socials-card.slide {
+  animation:
+    socials-slide 0.34s cubic-bezier(0.15, 0.7, 0.25, 1) both,
+    fx-float 5.5s ease-in-out 0.6s infinite;
+  --fx-float-y: -7px;
+}
+
+/* Every section: once its intro has played, the big character hovers.
+   The video sits at a slight overscale from the start so its edges never show. */
+.panel--media .section-video {
+  scale: 1.04;
+}
+
+.panel--media.is-shown .section-video {
+  animation: fx-hover 7s ease-in-out 1.7s infinite;
+}
+
+@keyframes fx-hover {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  30%      { translate: -6px -12px; rotate: -0.25deg; }
+  65%      { translate: 5px -4px; rotate: 0.2deg; }
+}
+
+.persona-text.slide {
+  animation:
+    persona-slide 0.34s cubic-bezier(0.15, 0.7, 0.25, 1) both,
+    fx-float 5.8s ease-in-out 0.7s infinite;
+  --fx-float-y: -10px;
+}
+
+/* Persona polaroids: dropped onto the table, then a slow bob. */
+[data-panel="persona"].items-in .persona-photo {
+  animation:
+    fx-photo-drop 0.55s var(--ease-snap) both,
+    fx-float 6.5s ease-in-out 0.8s infinite;
+}
+[data-panel="persona"].items-in .persona-photo--top {
+  animation-delay: 0.09s, 1.1s;
+  --fx-float-y: -5px;
+}
+
+@keyframes fx-photo-drop {
+  0%   { scale: 1.35; rotate: -9deg; }
+  60%  { scale: 0.96; rotate: 1.5deg; }
+  100% { scale: 1; rotate: 0deg; }
+}
+
+/* Education callouts hover off the page, out of phase with each other. */
+[data-panel="education"].is-shown .edu-clip {
+  animation: fx-float 5.2s ease-in-out 1.4s infinite;
+  --fx-float-y: -8px;
+}
+[data-panel="education"].is-shown .edu-clip + .edu-clip {
+  animation-duration: 6.1s;
+  animation-delay: 2.2s;
+  --fx-float-y: -6px;
+}
+
+/* Music web: covers pop in one after another, then hang and sway on their threads. */
+.web-board[data-web="music"].revealing .web-pc {
+  animation-delay: calc(0.42s + var(--fx-i, 0) * 45ms);
+}
+
+.web-board[data-web="music"]:not(.revealing) .web-pc:not(.web-center) {
+  animation: fx-sway var(--fx-sway-dur, 4.4s) ease-in-out var(--fx-sway-delay, 0s) infinite;
+}
+
+.web-board[data-web="music"] .web-pc:not(.web-center) {
+  pointer-events: auto;
+  scale: 1;
+  transition: scale 0.35s var(--ease-snap), filter 0.25s ease;
+}
+
+.web-board[data-web="music"] .web-pc:not(.web-center):hover {
+  scale: 1.16;
+  z-index: 6;
+  animation-play-state: paused;
+  filter: drop-shadow(4px 10px 12px rgba(0, 0, 0, 0.6));
+}
+.web-board[data-web="music"] .web-pc--keyed:not(.web-center):hover {
+  filter: url(#chromakey) drop-shadow(4px 10px 12px rgba(0, 0, 0, 0.6));
+}
+
+/* People: confidant cards breathe slightly out of sync when not being tilted. */
+.confidant-card:not(.fx-tilting) .cf-frame {
+  animation: fx-float var(--fx-sway-dur, 5s) ease-in-out var(--fx-sway-delay, 0s) infinite;
+  --fx-float-y: -4px;
+}
+
+/* Place card: photo settles in after the card pops, then the copy slides under it. */
+.place-card-wrap.is-open .place-card-photo img {
+  animation: fx-photo-settle 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) 0.08s both;
+}
+.place-card-wrap.is-open .place-card-title {
+  animation: fx-copy-in 0.34s var(--ease-snap) 0.14s both;
+}
+.place-card-wrap.is-open .place-card-desc {
+  animation: fx-copy-in 0.34s var(--ease-snap) 0.22s both;
+}
+.place-card-wrap.is-open .place-card-close {
+  animation: fx-close-in 0.4s var(--ease-snap) 0.28s both;
+}
+
+@keyframes fx-photo-settle {
+  0%   { scale: 1.14; }
+  100% { scale: 1; }
+}
+@keyframes fx-copy-in {
+  0%   { opacity: 0; translate: -18px 0; }
+  100% { opacity: 1; translate: 0 0; }
+}
+@keyframes fx-close-in {
+  0%   { opacity: 0; scale: 0.2; rotate: -90deg; }
+  100% { opacity: 1; scale: 1; rotate: 0deg; }
+}
+
+/* Metro tokens wobble as the pointer arrives, on top of the existing scale-up. */
+.mm-station:hover .mm-token {
+  animation: fx-token-wobble 0.5s var(--ease-snap);
+}
+@keyframes fx-token-wobble {
+  0%   { rotate: 0deg; }
+  30%  { rotate: -9deg; }
+  60%  { rotate: 5deg; }
+  100% { rotate: 0deg; }
+}
+
+/* ---------- Custom cursor ---------- */
+
+html.fx-has-cursor,
+html.fx-has-cursor * {
+  cursor: none !important;
+}
+
+.fx-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.fx-cursor.is-hidden { opacity: 0; }
+
+.fx-cur {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  will-change: transform;
+}
+
+.fx-cur svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-origin: 2px 2px;
+  transition: transform 0.22s var(--ease-snap);
+}
+
+.fx-cur--main path {
+  fill: var(--p5-black);
+  stroke: var(--p5-white);
+  stroke-width: 2.2;
+  stroke-linejoin: miter;
+  paint-order: stroke fill;
+  transition: fill 0.12s;
+}
+
+.fx-cur--red path  { fill: #e0233a; }
+.fx-cur--cyan path { fill: var(--p5-cyan); }
+.fx-cur--red,
+.fx-cur--cyan { opacity: 0.9; }
+
+.fx-cursor.is-link .fx-cur svg { transform: rotate(-16deg) scale(1.28); }
+.fx-cursor.is-link .fx-cur--main path { fill: #e0233a; }
+
+.fx-cursor.is-down .fx-cur svg { transform: rotate(-8deg) scale(0.78); }
+.fx-cursor.is-link.is-down .fx-cur svg { transform: rotate(-22deg) scale(1.02); }
+
+.fx-cur-tag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p5-white);
+  background: var(--p5-black);
+  padding: 0.12rem 0.55rem 0.18rem;
+  box-shadow: 3px 3px 0 #e0233a;
+  white-space: nowrap;
+  opacity: 0;
+  scale: 0.4;
+  transition: opacity 0.16s ease, scale 0.28s var(--ease-snap);
+}
+
+.fx-cursor.is-drag .fx-cur-tag { opacity: 1; scale: 1; }
+
+/* ---------- Click impact burst ---------- */
+
+.fx-burst {
+  position: fixed;
+  z-index: 9998;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.fx-burst svg {
+  position: absolute;
+  left: -60px;
+  top: -60px;
+  width: 120px;
+  height: 120px;
+  overflow: visible;
+}
+
+.fx-shard {
+  position: absolute;
+  left: -2px;
+  top: -9px;
+  width: 4px;
+  height: 18px;
+  background: var(--p5-white);
+  box-shadow: 0 0 0 1.5px var(--p5-black);
+}
+
+.fx-shard--red { background: #e0233a; }
+
+@media (prefers-reduced-motion: reduce) {
+  .menu.revealed .menu-label .ch,
+  .panel-wrap:not([hidden]) .panel-close,
+  .section-video,
+  .persona-photo,
+  .edu-clip,
+  .web-pc,
+  .cf-frame,
+  .mm-token,
+  .place-card-wrap.is-open * {
+    animation: none !important;
+  }
+
+  .menu-doodle,
+  .web-doodle,
+  .menu {
+    translate: none !important;
+    rotate: none !important;
+  }
+
+  .socials-card.slide {
+    animation: socials-slide 0.34s cubic-bezier(0.15, 0.7, 0.25, 1) both !important;
+  }
+
+  .confidant-card .cf-frame {
+    transform: none !important;
+  }
+}

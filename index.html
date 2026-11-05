@@ -46,6 +46,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./desktop-only.css">
+  <link rel="stylesheet" href="./motion.css">
 </head>
 
 <body>
@@ -76,9 +77,16 @@
     </defs>
   </svg>
 
-  <button class="take-heart" id="take-heart" type="button" aria-label="Arsène speaks">
-    <img src="./assets/takeheart.webp" alt="Take Your Heart">
-  </button>
+  <div class="take-heart" id="take-heart" role="group" aria-label="Music controls">
+    <button class="take-heart-hat" id="music-hat" type="button" aria-label="Mute music" aria-pressed="false">
+      <img src="./assets/takeheart_hat.webp" alt="">
+    </button>
+    <div class="take-heart-tags">
+      <button class="th-tag" id="music-mute" type="button" aria-pressed="false" aria-label="Mute music"></button>
+      <span class="th-sep" aria-hidden="true">/</span>
+      <button class="th-tag" id="music-mode" type="button" aria-label="Switch to chill music (Beneath the Mask, looped)"></button>
+    </div>
+  </div>
 
   <div class="stage">
 
@@ -95,7 +103,7 @@
       <a class="menu-item" href="#" data-target="experience">
         <span class="menu-label">Socials</span>
       </a>
-      <a class="menu-item" href="https://docs.google.com/document/d/1QTTqnjy3OOiTT4bGY6Wxojza-a-w0tmrkR1uitRvMqY/edit?tab=t.0"
+      <a class="menu-item" href="https://docs.google.com/document/d/1t3JrbGeuN4UM2SPXl2wUL6KXY4JK-5H_ZSM-yXOTYvI/edit?tab=t.0"
         target="_blank" rel="noopener">
         <span class="menu-label">Resume</span>
       </a>
@@ -134,12 +142,7 @@
       </video>
 
       <div class="persona-text" aria-hidden="true">
-        <video class="persona-text-vid pt-base" muted playsinline preload="auto">
-          <source src="./assets/personatext.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
-        </video>
-        <video class="persona-text-vid pt-num" muted playsinline preload="auto">
-          <source src="./assets/personatext.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
-        </video>
+        <img class="persona-text-img" src="./assets/persona_card.webp?v=5" width="1920" height="1080" alt="" decoding="async">
       </div>
 
       <img class="persona-photo persona-photo--bottom" src="./assets/photos_bottom.webp" alt="" aria-hidden="true">
@@ -151,7 +154,16 @@
         <source src="./assets/personaloopedmenu1.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
       </video>
 
-      <img class="socials-card" src="./assets/socials.webp" alt="" aria-hidden="true">
+      <div class="socials-card">
+        <img class="socials-card-img" src="./assets/socials_v2.webp?v=3" width="1423" height="1037" alt="" aria-hidden="true">
+        <nav class="social-links" aria-label="Socials">
+          <a class="social-btn" style="--sx: 101%; --sy: 11%;" href="mailto:kingsley.chow@stern.nyu.edu" aria-label="Email kingsley.chow@stern.nyu.edu"></a>
+          <a class="social-btn" style="--sx: 92.5%; --sy: 28.5%;" href="https://www.linkedin.com/in/k1ngsleychow/" target="_blank" rel="noopener" aria-label="LinkedIn: k1ngsleychow"></a>
+          <a class="social-btn" style="--sx: 84%; --sy: 48%;" href="https://www.instagram.com/theking_babyyy/" target="_blank" rel="noopener" aria-label="Creatives Instagram: @theking_babyyy"></a>
+          <a class="social-btn" style="--sx: 76%; --sy: 68%;" href="https://www.instagram.com/king._.c/" target="_blank" rel="noopener" aria-label="Personal Instagram: @king._.c"></a>
+          <a class="social-btn" style="--sx: 70%; --sy: 89%;" href="https://github.com/kingc007" target="_blank" rel="noopener" aria-label="GitHub: kingc007"></a>
+        </nav>
+      </div>
     </section>
 
     <section class="panel panel--media" data-panel="skills">
@@ -168,13 +180,101 @@
         <a class="menu-item" href="#" data-sub="places"><span class="menu-label">Places</span></a>
       </nav>
 
-      <div class="web-board hobbies-board" data-web="hobbies" hidden aria-hidden="true">
-        <div class="hobbies-fan" id="hobbies-fan" style="--n:3"></div>
-        <div class="hobbies-deck" id="hobbies-deck" role="button" tabindex="-1" aria-label="Draw a card from the deck"></div>
-        <svg class="web-doodle" style="left:41%;top:23%;width:2.6%;--rot:14deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
-        <svg class="web-doodle" style="left:38%;top:52%;width:2.3%;--rot:-9deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
-        <svg class="web-doodle" style="left:5.5%;top:44%;width:2.9%;--rot:8deg" viewBox="0 0 24 24"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
-        <svg class="web-doodle" style="left:46%;top:70%;width:2.6%;--rot:-13deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#0d0d0d" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+      <div class="web-board hobbies-board" data-web="hobbies" data-phase="idle" data-mode="bj" hidden aria-hidden="true">
+        <div class="bj-table">
+          <div class="bj-slab" aria-hidden="true"></div>
+
+          <div class="bj-top">
+            <div class="bj-modes" role="tablist" aria-label="Game">
+              <button class="bj-mode is-on" type="button" role="tab" aria-selected="true" data-mode="bj">Blackjack</button>
+              <button class="bj-mode" type="button" role="tab" aria-selected="false" data-mode="holdem">Hold'em</button>
+            </div>
+            <div class="hd-levels hd-only" role="radiogroup" aria-label="How well the house plays">
+              <span class="hd-levels-label">House</span>
+              <button class="hd-level" type="button" role="radio" aria-checked="false" data-level="easy">Easy</button>
+              <button class="hd-level is-on" type="button" role="radio" aria-checked="true" data-level="medium">Medium</button>
+              <button class="hd-level" type="button" role="radio" aria-checked="false" data-level="hard">Hard</button>
+            </div>
+            <div class="bj-banks">
+              <span class="bj-bank bj-bank--house" id="bj-house-wrap">House <b id="bj-house">$1000</b></span>
+              <span class="bj-bank" id="bj-bank-wrap">You <b id="bj-bank">$1000</b></span>
+            </div>
+          </div>
+
+          <div class="bj-rack" id="bj-rack" role="group" aria-label="Chips. Click one to add it to your bet">
+            <button class="bj-chip" type="button" data-v="5" aria-label="Bet 5"><span>5</span></button>
+            <button class="bj-chip" type="button" data-v="25" aria-label="Bet 25"><span>25</span></button>
+            <button class="bj-chip" type="button" data-v="100" aria-label="Bet 100"><span>100</span></button>
+            <button class="bj-chip" type="button" data-v="500" aria-label="Bet 500"><span>500</span></button>
+          </div>
+
+          <div class="bj-shoe-wrap">
+            <button class="bj-shoe" id="bj-shoe" type="button" tabindex="-1" aria-label="Deck. Deal a hand"></button>
+            <span class="bj-left"><b id="bj-left">52</b> left</span>
+          </div>
+
+          <div class="bj-seat bj-seat--dealer">
+            <span class="bj-label"><span id="bj-dealer-name">Dealer</span> <b id="bj-dealer-total"></b></span>
+            <div class="bj-hand" id="bj-dealer"></div>
+          </div>
+
+          <div class="bj-board" id="bj-board" role="group" aria-label="Board"></div>
+
+          <div class="bj-pot">
+            <button class="bj-spot" id="bj-spot" type="button" aria-label="Your bet. Click to take a chip back">
+              <span class="bj-stack" id="bj-stack"></span>
+            </button>
+            <span class="bj-bet"><span id="bj-bet-label">Bet</span> <b id="bj-bet">$0</b></span>
+          </div>
+
+          <div class="bj-mid">
+            <p class="bj-status" id="bj-status" aria-live="polite">Place your bet</p>
+            <div class="bj-actions">
+              <button class="bj-btn bj-only" id="bj-hit" type="button"><kbd>H</kbd><span>Hit</span></button>
+              <button class="bj-btn bj-only" id="bj-stand" type="button"><kbd>S</kbd><span>Stand</span></button>
+              <button class="bj-btn bj-only" id="bj-double" type="button"><kbd>X</kbd><span>Double</span></button>
+              <button class="bj-btn hd-only" id="hd-call" type="button"><kbd>C</kbd><span>Check</span></button>
+              <button class="bj-btn hd-only" id="hd-raise" type="button"><kbd>B</kbd><span>Bet</span></button>
+              <button class="bj-btn hd-only" id="hd-allin" type="button"><kbd>A</kbd><span>All in</span></button>
+              <button class="bj-btn bj-btn--quiet hd-only" id="hd-fold" type="button"><kbd>F</kbd><span>Fold</span></button>
+              <button class="bj-btn bj-btn--deal" id="bj-deal" type="button"><kbd>D</kbd><span>Deal</span></button>
+              <button class="bj-btn bj-btn--quiet bj-only" id="bj-clear" type="button"><kbd>C</kbd><span>Clear bet</span></button>
+            </div>
+            <span class="bj-record" id="bj-record"></span>
+          </div>
+
+          <div class="bj-seat bj-seat--player">
+            <span class="bj-label">You <b id="bj-player-total"></b></span>
+            <div class="bj-hand" id="bj-player"></div>
+          </div>
+
+          <div class="bj-cutin" id="bj-cutin" aria-hidden="true"><span class="bj-cutin-text"></span></div>
+
+          <div class="bj-foot">
+            <p class="bj-rules bj-only">One deck, 52 of my skills. Played cards stay out until you shuffle, so you can count them: 2 to 6 is +1, 7 to 9 is 0, tens through aces are &minus;1. Blackjack pays 3 to 2 and the dealer stands on 17.</p>
+            <p class="bj-rules hd-only">Two of the same deck, 104 cards, dealt one deck at a time: all 52 of the first go out before the second starts, and no card ever shows up twice in a hand. Heads up against a $1000 house; break it to win. Both ante $10. Click chips to size a bet, then press Bet. Same count: tens through aces are &minus;1.</p>
+            <p class="bj-suits">
+              <span><i>&#9824;</i>Mind</span>
+              <span><i>&#9827;</i>Body</span>
+              <span><i class="is-red">&#9829;</i>Creative and life</span>
+              <span><i class="is-red">&#9830;</i>Business and tech</span>
+            </p>
+            <div class="bj-tools">
+              <div class="bj-count">
+                <button class="bj-btn bj-btn--quiet bj-count-toggle" id="bj-count-toggle" type="button" aria-expanded="false" aria-controls="bj-count-body"><kbd>K</kbd><span>Show count</span></button>
+                <div class="bj-count-body" id="bj-count-body" hidden>
+                  <p class="bj-count-nums"><span>Running <b id="bj-rc">0</b></span><span>True <b id="bj-tc">0</b></span></p>
+                  <div class="bj-tally" id="bj-tally" role="img" aria-label="Which cards have been played"></div>
+                </div>
+              </div>
+              <button class="bj-btn bj-btn--quiet bj-btn--shuffle" id="bj-shuffle" type="button"><kbd>R</kbd><span>Shuffle</span></button>
+            </div>
+          </div>
+        </div>
+        <svg class="web-doodle" style="left:2.5%;top:36%;width:2.6%;--rot:14deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
+        <svg class="web-doodle" style="left:34%;top:42%;width:2.3%;--rot:-9deg" viewBox="0 0 24 24"><path d="M12 0.8 C12.5 8.6 15.4 11.5 23.2 12 C15.4 12.5 12.5 15.4 12 23.2 C11.5 15.4 8.6 12.5 0.8 12 C8.6 11.5 11.5 8.6 12 0.8 Z" fill="#f5f3ee"/></svg>
+        <svg class="web-doodle" style="left:2%;top:58%;width:2.9%;--rot:8deg" viewBox="0 0 24 24"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
+        <svg class="web-doodle" style="left:50%;top:50%;width:2.6%;--rot:-13deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#0d0d0d" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
       </div>
 
       <div class="web-board web-board--confidants" data-web="people" hidden aria-hidden="true">
@@ -210,7 +310,6 @@
           </span>
           <span class="metro-prog-cap">East</span>
         </div>
-        <div class="metro-hint" aria-hidden="true"><span class="metro-hint-label">Scroll the line</span><span class="metro-hint-arrow">››</span></div>
       </div>
       <svg class="web-doodle" style="left:49.5%;top:4.0%;width:2.3%;--rot:9deg" viewBox="0 0 24 24"><path d="M12 1.5 L15 9.1 L22.9 9.4 L16.5 14.4 L18.9 22 L12 17.1 L5.1 22 L7.5 14.4 L1.1 9.4 L9 9.1 Z" fill="#d81f2a" stroke="#f5f3ee" stroke-width="0.9" stroke-linejoin="round"/></svg>
       <svg class="web-doodle" style="left:58.0%;top:72.0%;width:2.7%;--rot:24deg" viewBox="0 0 24 24"><path d="M21 12.79 A 9 9 0 1 1 11.21 3 A 7 7 0 0 0 21 12.79 Z" fill="#f5f3ee" stroke="#0d0d0d" stroke-width="0.8" stroke-linejoin="round"/></svg>
@@ -517,10 +616,29 @@
       <source src="./assets/startbuttonloop.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
     </video>
     <img class="start-gate-art" src="./assets/startmenu_cut.webp" alt="" aria-hidden="true">
-    <div class="start-gate-text"><span class="menu-label">Press Any</span><span class="menu-label">Button</span></div>
+    <div class="start-gate-text" aria-hidden="true">
+      <span class="pab-row pab-row--top"><span class="pab-t">P</span><span class="pab-t">R</span><span class="pab-t">E</span><span class="pab-t">S</span><span class="pab-t">S</span><span class="pab-gap"></span><span class="pab-t">A</span><span class="pab-t">N</span><span class="pab-t">Y</span></span>
+      <span class="pab-row pab-row--main"><span class="pab-word">Button</span></span>
+      <span class="pab-hint">any key &nbsp;/&nbsp; click &nbsp;/&nbsp; tap</span>
+    </div>
+    <p class="sr-only">Press any key or click to start.</p>
+    <div class="gate-warning" role="note">
+      <span class="gate-warning-tape" aria-hidden="true"></span>
+      <span class="gate-warning-head"><span class="gw-bang" aria-hidden="true">!</span>Warning</span>
+      <p class="gate-warning-body"><strong>Intense music is playing.</strong> Turn it down &mdash; or hit <em>Mute / Chill</em> bottom left.</p>
+    </div>
     <video class="start-gate-sting" id="start-gate-sting" muted playsinline preload="auto">
       <source src="./assets/startbuttongreenscreen.mp4" type="video/mp4" media="(min-width: 1367px), (min-width: 1025px) and (pointer: fine)">
     </video>
+  </div>
+
+  <div class="place-card-wrap" id="place-card-wrap" hidden>
+    <div class="place-card" role="dialog" aria-labelledby="place-card-title">
+      <button class="place-card-close" type="button" aria-label="Close">&times;</button>
+      <div class="place-card-photo"><img id="place-card-img" width="1254" height="1254" decoding="async" alt=""></div>
+      <h2 class="place-card-title" id="place-card-title"></h2>
+      <p class="place-card-desc" id="place-card-desc"></p>
+    </div>
   </div>
 
   <div class="dt-gate" role="alertdialog" aria-labelledby="dt-gate-title">
@@ -539,9 +657,12 @@
     (function () {
       var root = document.documentElement;
       if (!root.classList.contains('is-compact')) {
-        var s = document.createElement('script');
-        s.src = './script.js';
-        document.body.appendChild(s);
+        ['./script.js', './motion.js'].forEach(function (src) {
+          var s = document.createElement('script');
+          s.src = src;
+          s.async = false;
+          document.body.appendChild(s);
+        });
       }
       window.matchMedia(root.dataset.desktopMq)
         .addEventListener('change', function () { window.location.reload(); });
