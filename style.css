@@ -332,8 +332,7 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: rgba(5, 5, 5, 0.92);
-  backdrop-filter: blur(2px);
+  background: rgba(5, 5, 5, 0.94);
   padding: clamp(2rem, 8vw, 7rem);
   /* Every panel is a fixed, full-screen scene; nothing in it should scroll. */
   overflow: hidden;
@@ -1031,10 +1030,11 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 }
 
 @keyframes doodle-glimmer {
-  0%, 100% { opacity: 1;    scale: 1;    filter: brightness(1)    drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.35)); }
-  38%      { opacity: 0.78; scale: 0.92; filter: brightness(0.95) drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.35)); }
-  50%      { opacity: 1;    scale: 1.14; filter: brightness(1.9)  drop-shadow(0 0 5px rgba(255, 255, 255, 0.9)); }
-  62%      { opacity: 0.85; scale: 0.97; filter: brightness(1.15) drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.35)); }
+  /* transform/opacity only, so it stays on the compositor (animating filter repainted every frame) */
+  0%, 100% { opacity: 1;    scale: 1; }
+  38%      { opacity: 0.78; scale: 0.92; }
+  50%      { opacity: 1;    scale: 1.14; }
+  62%      { opacity: 0.85; scale: 0.97; }
 }
 
 .web-strings line,
@@ -1056,7 +1056,8 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 .web-strings--spider .tie { stroke-width: 2.4; opacity: 0.9; }
 
 .web-pc--keyed {
-  filter: url(#chromakey) drop-shadow(2px 5px 7px rgba(0, 0, 0, 0.5));
+  /* Key is baked into assets/music/keyed/*.webp — a live SVG filter here re-rasterised on every frame. */
+  filter: drop-shadow(2px 5px 7px rgba(0, 0, 0, 0.5));
 }
 
 .web-center { z-index: 2; filter: none; }
@@ -3331,4 +3332,20 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 @media (prefers-reduced-motion: reduce) {
   .place-card-wrap.is-open .place-card { animation: none; }
   .place-card-photo img { transition: none; }
+}
+
+/* ---------- GPU chroma key (chroma-gl.js) ----------
+   The source video stays in the tree (so frame callbacks keep firing) but is
+   effectively invisible; the canvas drawn over it carries the keyed picture. */
+video.glk-src {
+  opacity: 0.002 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+canvas.glk-canvas {
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+canvas.glk-off {
+  display: none !important;
 }

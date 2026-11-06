@@ -154,7 +154,7 @@
   filter: drop-shadow(4px 10px 12px rgba(0, 0, 0, 0.6));
 }
 .web-board[data-web="music"] .web-pc--keyed:not(.web-center):hover {
-  filter: url(#chromakey) drop-shadow(4px 10px 12px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(4px 10px 12px rgba(0, 0, 0, 0.6));
 }
 
 /* People: confidant cards breathe slightly out of sync when not being tilted. */
