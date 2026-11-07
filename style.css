@@ -1606,15 +1606,17 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
   color: var(--p5-white);
   pointer-events: auto;
 }
-/* Hold'em: the same frame, with the board laid across the middle. */
+/* Hold'em: the same frame, with the board laid across the middle and the
+   chips racked on the right, next to the actions they feed. */
 .hobbies-board[data-mode="holdem"] .bj-table {
+  grid-template-columns: calc(var(--card-w) * 2.15) minmax(0, 1fr) auto calc(var(--chip) * 1.2);
   grid-template-rows: auto 1fr auto 1fr auto;
   grid-template-areas:
-    "top  top    top   top"
-    "rack dealer pot   shoe"
-    "rack board  board board"
-    "rack player mid   mid"
-    "foot foot   foot  foot";
+    "top    top   top   top"
+    "dealer pot   shoe  rack"
+    "board  board board rack"
+    "player mid   mid   rack"
+    "foot   foot  foot  foot";
 }
 
 .hobbies-board :is(.bj-seat, .bj-pot, .bj-mid, .bj-shoe-wrap) { align-self: center; }
@@ -2133,6 +2135,20 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 .bj-rack .bj-chip:focus-visible { box-shadow: 0 0 0 3px var(--p5-white); }
 .bj-rack .bj-chip:active:not(:disabled) { translate: 0 0; rotate: 0deg; transition-duration: 0.06s; }
 .bj-rack .bj-chip:disabled { opacity: 0.28; cursor: default; }
+/* On the right in Hold'em, chips lean left toward the table. */
+.hobbies-board[data-mode="holdem"] .bj-rack .bj-chip:hover:not(:disabled),
+.hobbies-board[data-mode="holdem"] .bj-rack .bj-chip:focus-visible {
+  translate: calc(var(--chip) * -0.1) 0;
+  rotate: -30deg;
+}
+/* Pressing Bet with nothing picked points at the chips. */
+.bj-rack.is-calling .bj-chip:not(:disabled) {
+  animation: bj-chip-call 0.5s var(--ease-snap) 2 calc(var(--i, 0) * 0.07s);
+}
+@keyframes bj-chip-call {
+  0%, 100% { scale: 1; outline: 0 solid transparent; outline-offset: 0; filter: none; }
+  45% { scale: 1.16; outline: calc(var(--chip) * 0.06) solid var(--p5-white); outline-offset: calc(var(--chip) * 0.06); filter: drop-shadow(0 0 calc(var(--chip) * 0.25) rgba(245, 243, 238, 0.7)); }
+}
 
 .bj-chip--fly {
   position: fixed;

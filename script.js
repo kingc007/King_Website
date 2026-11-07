@@ -2914,7 +2914,8 @@ function hdRenderControls() {
   const canRaise = mine && hdRaises < HD_MAX_RAISES && max > owe;
   const word = owe ? 'Raise' : 'Bet';
   hdRaise.querySelector('span').textContent = staged ? `${word} ${bjMoney(staged)}` : word;
-  hdRaise.disabled = !canRaise || !staged || (staged < minRaise && staged < max);
+  // With nothing picked, Bet stays live and points you at the chips instead.
+  hdRaise.disabled = !canRaise || (!!staged && staged < minRaise && staged < max);
   hdAllIn.disabled = !mine || !bjBank;
   hdFold.disabled = !mine;
   bjDeal.disabled = !bjBetting() || !bjEnough() || !!hdShort();
@@ -2930,8 +2931,9 @@ function hdAddChip(v, chipEl) {
   hdStaged.push(v);
   playSwitchSfx();
   const chip = chipEl || bjRackChip(v);
-  chip.animate([{ translate: '0 0' }, { translate: `${chip.offsetWidth * 0.25}px 0` }, { translate: '0 0' }],
+  chip.animate([{ translate: '0 0' }, { translate: `${chip.offsetWidth * -0.25}px 0` }, { translate: '0 0' }],
     { duration: 220, easing: 'cubic-bezier(0.3, 0.7, 0.3, 1)' });
+  bjRack.classList.remove('is-calling');
   hdRenderPot();
   hdRenderControls();
 }
@@ -3032,7 +3034,20 @@ function hdBet(amount) {
 
 function hdBetStaged() {
   if (hdRaise.disabled) return;
+  if (!hdStagedTotal()) { hdCallChips(); return; }
   hdBet(hdStagedTotal());
+}
+
+let hdCallTimer = 0;
+// Flash the rack so it's clear the chips are how you size a bet.
+function hdCallChips() {
+  playClickSfx();
+  bjRack.classList.remove('is-calling');
+  void bjRack.offsetWidth;
+  bjRack.classList.add('is-calling');
+  clearTimeout(hdCallTimer);
+  hdCallTimer = setTimeout(() => bjRack.classList.remove('is-calling'), 1400);
+  bjSetStatus('Pick chips to bet');
 }
 
 function hdFoldHand() {
