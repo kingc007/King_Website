@@ -1573,11 +1573,11 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
    blackjack has only two hands, so its cards run bigger. */
 .hobbies-board[data-mode="holdem"] {
   --card-w: clamp(70px, min(8vw, 12.2vh), 150px);
-  --chip: clamp(48px, min(4.4vw, 7.4vh), 84px);
+  --chip: clamp(48px, min(5vw, 8.5vh), 104px);
 }
 .hobbies-board[data-mode="bj"] {
-  --card-w: clamp(84px, min(9.6vw, 18vh), 196px);
-  --chip: clamp(48px, min(4.4vw, 7.4vh), 84px);
+  --card-w: clamp(84px, min(10.6vw, 20vh), 220px);
+  --chip: clamp(48px, min(5vw, 8.5vh), 104px);
 }
 
 .hobbies-board[data-mode="bj"] .hd-only,
@@ -1591,14 +1591,15 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
   width: 55%;
   display: grid;
   /* Blackjack: each hand gets a row; the bet sits by the deck across from the
-     dealer, and the table talks from beside your hand. */
-  grid-template-columns: calc(var(--chip) * 1.2) calc(var(--card-w) * 2.15) minmax(0, 1fr) auto;
+     dealer, the table talks from beside your hand, and the chips rack up on
+     the right edge. */
+  grid-template-columns: calc(var(--card-w) * 2.15) minmax(0, 1fr) auto calc(var(--chip) * 1.2);
   grid-template-rows: auto 1fr 1fr auto;
   grid-template-areas:
-    "top  top    top  top"
-    "rack dealer pot  shoe"
-    "rack player mid  mid"
-    "foot foot   foot foot";
+    "top    top  top  top"
+    "dealer pot  shoe rack"
+    "player mid  mid  rack"
+    "foot   foot foot foot";
   column-gap: calc(var(--unit) * 0.26);
   row-gap: calc(var(--unit) * 0.08);
   padding: calc(var(--unit) * 0.14) calc(var(--unit) * 0.26) calc(var(--unit) * 0.34);
@@ -1606,10 +1607,8 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
   color: var(--p5-white);
   pointer-events: auto;
 }
-/* Hold'em: the same frame, with the board laid across the middle and the
-   chips racked on the right, next to the actions they feed. */
+/* Hold'em: the same frame, with the board laid across the middle. */
 .hobbies-board[data-mode="holdem"] .bj-table {
-  grid-template-columns: calc(var(--card-w) * 2.15) minmax(0, 1fr) auto calc(var(--chip) * 1.2);
   grid-template-rows: auto 1fr auto 1fr auto;
   grid-template-areas:
     "top    top   top   top"
@@ -1622,10 +1621,18 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 .hobbies-board :is(.bj-seat, .bj-pot, .bj-mid, .bj-shoe-wrap) { align-self: center; }
 .hobbies-board .bj-pot { justify-self: center; }
 .hobbies-board .bj-spot { width: calc(var(--chip) * 2.3); height: calc(var(--chip) * 2.3); }
+/* Blackjack hands fan two cards into 1.8 card widths, so the seat column
+   only needs a little more than that; the room goes to bigger cards. */
+.hobbies-board[data-mode="bj"] .bj-table {
+  grid-template-columns: calc(var(--card-w) * 1.85) minmax(0, 1fr) auto calc(var(--chip) * 1.2);
+  column-gap: calc(var(--unit) * 0.18);
+}
+.hobbies-board[data-mode="bj"] .bj-spot { width: calc(var(--chip) * 1.8); height: calc(var(--chip) * 1.8); }
+.hobbies-board[data-mode="holdem"] .bj-spot { width: calc(var(--chip) * 2); height: calc(var(--chip) * 2); }
 .hobbies-board .bj-bet { font-size: calc(var(--unit) * 0.13); }
 .hobbies-board .bj-mid { gap: calc(var(--unit) * 0.16); }
-.panel .hobbies-board .bj-status { font-size: calc(var(--unit) * 0.44); line-height: 1.12; }
-.panel .hobbies-board .bj-status.is-long { font-size: calc(var(--unit) * 0.34); }
+.panel .hobbies-board .bj-status { font-size: calc(var(--unit) * 0.36); line-height: 1.12; }
+.panel .hobbies-board .bj-status.is-long { font-size: calc(var(--unit) * 0.3); }
 .panel .hobbies-board[data-mode="holdem"] .bj-status { font-size: calc(var(--unit) * 0.36); }
 .panel .hobbies-board[data-mode="holdem"] .bj-status.is-long { font-size: calc(var(--unit) * 0.3); }
 .hobbies-board .bj-actions .bj-btn { font-size: calc(var(--unit) * 0.21); }
@@ -1727,8 +1734,8 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 .hobbies-board[data-mode="holdem"] .bj-modes { grid-area: modes; }
 .hobbies-board[data-mode="holdem"] .hd-levels { grid-area: levels; padding-left: calc(var(--unit) * 0.06); }
 /* The count sits beside the deck so the house's row is no taller than its cards. */
-.hobbies-board[data-mode="holdem"] .bj-shoe-wrap { flex-direction: row-reverse; align-items: flex-end; }
-.hobbies-board[data-mode="holdem"] .bj-left { writing-mode: vertical-rl; rotate: 180deg; }
+.hobbies-board .bj-shoe-wrap { flex-direction: row-reverse; align-items: flex-end; }
+.hobbies-board .bj-left { writing-mode: vertical-rl; rotate: 180deg; }
 .hobbies-board[data-mode="holdem"] .bj-mid { gap: calc(var(--unit) * 0.08); }
 .hobbies-board[data-mode="holdem"] .bj-record { min-height: 0; line-height: 1.1; }
 .hobbies-board[data-mode="holdem"] .bj-banks {
@@ -2135,9 +2142,9 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 .bj-rack .bj-chip:focus-visible { box-shadow: 0 0 0 3px var(--p5-white); }
 .bj-rack .bj-chip:active:not(:disabled) { translate: 0 0; rotate: 0deg; transition-duration: 0.06s; }
 .bj-rack .bj-chip:disabled { opacity: 0.28; cursor: default; }
-/* On the right in Hold'em, chips lean left toward the table. */
-.hobbies-board[data-mode="holdem"] .bj-rack .bj-chip:hover:not(:disabled),
-.hobbies-board[data-mode="holdem"] .bj-rack .bj-chip:focus-visible {
+/* Racked on the right, chips lean left toward the table. */
+.hobbies-board .bj-rack .bj-chip:hover:not(:disabled),
+.hobbies-board .bj-rack .bj-chip:focus-visible {
   translate: calc(var(--chip) * -0.1) 0;
   rotate: -30deg;
 }
