@@ -1243,7 +1243,6 @@ const reelFilmEl = document.querySelector('.reel-film');
 const reelStageEl = document.querySelector('.movie-stage');
 const reelSubMenu = document.querySelector('[data-panel="skills"] .sub-menu');
 const reelArtVideo = document.querySelector('[data-panel="skills"] .section-video');
-const reelHintEl = document.querySelector('.reel-hint');
 
 const REEL_FIELD_PAD = 46;
 
@@ -1591,33 +1590,6 @@ function buildReelTail() {
     reelTail.part.rail.setAttribute('d', band(1) + band(-1));
   }
 
-  if (reelHintEl) {
-    const bw = reelHintEl.offsetWidth, bh = reelHintEl.offsetHeight;
-
-    const winTop = (x) => jy + Math.tan(ja) * (x + bx * half0 - jx) - by * half0;
-
-    const clear = (x, top) => {
-      for (let i = 0; i < N; i++) {
-        const ex = Math.abs(abx[i]) * hw[i], ey = Math.abs(aby[i]) * hw[i];
-        if (px[i] + ex < x - 8 || px[i] - ex > x + bw + 8) continue;
-        if (py[i] + ey < top - 8 || py[i] - ey > top + bh + 8) continue;
-        return false;
-      }
-      return true;
-    };
-
-    const gap = Math.max(18, half0 * 0.34);
-    const HINT_LEFT = 12;
-    let hx = HINT_LEFT, top = 0;
-    for (let x = Math.max(HINT_LEFT, jx * 0.60); x > HINT_LEFT; x -= 18) {
-      const t = winTop(x + bw / 2) - bh - gap;
-      if (t > 8 && clear(x, t)) { hx = x; top = t; break; }
-    }
-
-    if (!top) top = winTop(HINT_LEFT + bw / 2) - bh - gap;
-    reelHintEl.style.left = `${hx.toFixed(0)}px`;
-    reelHintEl.style.top = `${Math.max(8, top).toFixed(0)}px`;
-  }
   buildReelDrift(W, H, ink, filmH, u1, js);
   paintReelTail();
 }

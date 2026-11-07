@@ -2828,44 +2828,6 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
   100% { opacity: 1; transform: none; }
 }
 
-.reel-hint {
-  position: absolute;
-
-  left: 13%;
-  top: 47%;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  pointer-events: none;
-  font-family: 'Bungee', sans-serif;
-  font-size: clamp(9px, 0.95vw, 15px);
-  line-height: 1;
-  color: #f0ede4;
-  background: rgba(11, 11, 13, 0.72);
-  border: 1.5px solid #e0233a;
-  border-radius: 999px;
-  padding: 0.55em 0.9em 0.5em;
-  text-shadow: 0.04em 0.04em 0 #000;
-  opacity: 0;
-}
-.web-board--movies.drop .reel-hint {
-  animation: reel-hint-in 0.5s ease 1.15s both;
-}
-@keyframes reel-hint-in {
-  from { opacity: 0; transform: translateY(-0.5em); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.reel-hint-arrow {
-  font-size: 1.1em;
-  animation: metro-hint-nudge 1.3s ease-in-out infinite;
-}
-.web-board--movies.reel-scrolled .reel-hint {
-  animation: none;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
 .movie-projector {
   position: absolute;
   inset: 0;
@@ -3199,7 +3161,6 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
   .web-board.drop .confidant-card,
   .web-board.drop .reel-shot img,
   .web-board.drop .reel-caption,
-  .web-board.drop .reel-hint,
   .web-board.drop .mm-station,
   .web-board.drop .metro-badge,
   .web-board.drop .metro-prog,
@@ -3212,8 +3173,6 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
     opacity: 1 !important;
     stroke-dashoffset: 0 !important;
   }
-
-  .web-board--movies.reel-scrolled .reel-hint { opacity: 0 !important; }
 
   .menu-doodle,
   .web-doodle {
