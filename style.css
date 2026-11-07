@@ -2634,7 +2634,6 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
   overflow-y: hidden;
   scrollbar-width: none;
   overscroll-behavior-x: contain;
-  cursor: grab;
   pointer-events: auto;
 
   --reel-lap: calc(var(--fu) * 3);
@@ -2672,7 +2671,6 @@ body:has(.start-gate.starting:not([hidden])) .take-heart { opacity: 0; pointer-e
 }
 .reel-drift path { stroke-linejoin: miter; }
 .reel-scroll::-webkit-scrollbar { display: none; }
-.reel-scroll.dragging { cursor: grabbing; }
 .reel-film {
   position: relative;
   display: flex;

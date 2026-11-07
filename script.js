@@ -1172,7 +1172,6 @@ if (movieScrim) movieScrim.addEventListener('click', () => closeProjection());
 reelFrames.forEach((frame, n) => {
 
   frame.addEventListener('click', () => {
-    if (reelScroll && reelScroll.dataset.dragged === '1') return;
     cancelReelCue();
     playClickSfx();
     projectMovie(n, n < movieIndex ? 'left' : 'right');
@@ -1202,33 +1201,8 @@ reelFrames.forEach((frame, n) => {
     scroller.scrollLeft += delta;
     hideHint();
   }, { passive: false });
-  let down = false, startX = 0, startLeft = 0;
-  scroller.addEventListener('pointerdown', (e) => {
-    cancelReelCue();
-    down = true; startX = e.clientX; startLeft = scroller.scrollLeft;
-    scroller.dataset.dragged = '0';
-    scroller.setPointerCapture(e.pointerId);
-  });
-  scroller.addEventListener('pointermove', (e) => {
-    if (!down) return;
-    const dx = e.clientX - startX;
-    if (Math.abs(dx) > 3) {
-      scroller.classList.add('dragging');
-      scroller.dataset.dragged = '1';
-      hideHint();
-    }
-    scroller.scrollLeft = startLeft - dx;
-  });
-  const endDrag = (e) => {
-    if (!down) return;
-    down = false;
-    scroller.classList.remove('dragging');
-    try { scroller.releasePointerCapture(e.pointerId); } catch (_) {}
-
-    setTimeout(() => { scroller.dataset.dragged = '0'; }, 0);
-  };
-  scroller.addEventListener('pointerup', endDrag);
-  scroller.addEventListener('pointercancel', endDrag);
+  // Touching the reel stops its intro glide.
+  scroller.addEventListener('pointerdown', () => cancelReelCue());
   scroller.addEventListener('scroll', () => {
 
     if (!reelCueing && Math.abs(scroller.scrollLeft - reelRest) > 8) hideHint();

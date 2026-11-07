@@ -256,26 +256,6 @@ html.fx-has-cursor * {
 .fx-cursor.is-down .fx-cur svg { transform: rotate(-8deg) scale(0.78); }
 .fx-cursor.is-link.is-down .fx-cur svg { transform: rotate(-22deg) scale(1.02); }
 
-.fx-cur-tag {
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-family: 'Anton', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--p5-white);
-  background: var(--p5-black);
-  padding: 0.12rem 0.55rem 0.18rem;
-  box-shadow: 3px 3px 0 #e0233a;
-  white-space: nowrap;
-  opacity: 0;
-  scale: 0.4;
-  transition: opacity 0.16s ease, scale 0.28s var(--ease-snap);
-}
-
-.fx-cursor.is-drag .fx-cur-tag { opacity: 1; scale: 1; }
-
 /* ---------- Click impact burst ---------- */
 
 .fx-burst {

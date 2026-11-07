@@ -207,24 +207,20 @@
   cursor.className = 'fx-cursor is-hidden';
   cursor.setAttribute('aria-hidden', 'true');
   const layer = (cls) => `<div class="fx-cur ${cls}"><svg viewBox="0 0 30 30"><path d="${ARROW}"/></svg></div>`;
-  cursor.innerHTML = layer('fx-cur--cyan') + layer('fx-cur--red') + layer('fx-cur--main') +
-    '<span class="fx-cur-tag">‹ Drag ›</span>';
+  cursor.innerHTML = layer('fx-cur--cyan') + layer('fx-cur--red') + layer('fx-cur--main');
   document.body.appendChild(cursor);
   const [curCyan, curRed, curMain] = cursor.querySelectorAll('.fx-cur');
-  const curTag = cursor.querySelector('.fx-cur-tag');
   const trail = {
     red: { x: spring(520, 30), y: spring(520, 30) },
     cyan: { x: spring(240, 22), y: spring(240, 22) },
   };
 
   const LINK_SEL = 'a, button, [role="button"], .menu-item, .mm-station, .metro-prog, .reel-frame, .confidant-card, .bj-shoe, #start-gate';
-  const DRAG_SEL = '.reel-scroll';
 
   function classify(target) {
     if (!(target instanceof Element)) return;
     const link = target.closest(LINK_SEL);
     cursor.classList.toggle('is-link', !!link);
-    cursor.classList.toggle('is-drag', !!target.closest(DRAG_SEL));
   }
 
   // ---------- Click impact burst ----------
@@ -367,7 +363,6 @@
       Object.values(trail).forEach((t) => { t.x.t = pointer.x; t.y.t = pointer.y; t.x.step(dt); t.y.step(dt); });
       place(curRed, trail.red.x.x, trail.red.y.x);
       place(curCyan, trail.cyan.x.x, trail.cyan.y.x);
-      place(curTag, pointer.x + 22, pointer.y + 24);
     }
 
     par.x.t = pointer.seen ? (pointer.x / innerWidth - 0.5) * 2 : 0;
